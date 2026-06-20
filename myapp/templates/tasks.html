@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست کارهای من</title>
+    <style>
+        body { font-family: Tahoma; direction: rtl; padding: 20px; }
+        .task { background: #f4f4f4; margin: 5px; padding: 10px; border-radius: 5px; }
+        .done { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+
+    <h1>لیست وظایف</h1>
+    <div>
+        {% for task in tasks %}
+            <div class="task">
+                <span class="{% if task.complete %}done{% endif %}">
+                    {{ task.title }}
+                </span>
+                 <div>
+                    <a href="/complete/{{ task.id }}/">✅</a>
+                    <a href="/update/{{ task.id }}/">✏️</a>
+                    <a href="/delete/{{ task.id }}/">🗑️</a>
+                </div>
+                {% if task.complete %} (انجام شده) {% else %} (در جریان) {% endif %}
+            </div>
+        {% empty %}
+            <p>هنوز هیچ کاری ثبت نشده است.</p>
+        {% endfor %}
+    </div>
+    <h2>تسک جدید اضافه کن<h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" palceholder="new task" required>
+            <button type="submit" >add</button>
+        </form>
+        
+
+
+          
+
+
+
+</body>
+</html>

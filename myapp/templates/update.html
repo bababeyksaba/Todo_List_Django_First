@@ -1,0 +1,7 @@
+<h2>ویرایش کار</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="title" value="{{ task.title }}">
+    <button type="submit">ذخیره</button>
+</form>
