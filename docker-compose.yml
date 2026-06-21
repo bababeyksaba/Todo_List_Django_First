@@ -1,0 +1,19 @@
+version: "29.0.1"
+
+services:
+  postgres: docker ps
+
+    image: postgres:15
+    container_name: django_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: todo_db
+      POSTGRES_USER: todo_user
+      POSTGRES_PASSWORD: todo_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
